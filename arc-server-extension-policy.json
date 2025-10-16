@@ -1,0 +1,65 @@
+{
+  "properties": {
+    "displayName": "Audit Arc-enabled Server Extensions Not in Approved List",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "This policy audits Azure Arc-enabled servers that have extensions installed which are not in the approved parameter list. Use this policy to ensure only approved extensions are deployed to your Arc-enabled servers.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Azure Arc"
+    },
+    "parameters": {
+      "approvedExtensions": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Approved Extension Types",
+          "description": "List of approved extension types that are allowed on Arc-enabled servers. Example: ['Microsoft.Azure.Monitor.AzureMonitorLinuxAgent', 'Microsoft.Azure.Security.AzureDefenderForServers']"
+        },
+        "defaultValue": [
+          "Microsoft.Azure.Monitor.AzureMonitorLinuxAgent",
+          "Microsoft.Azure.Monitor.AzureMonitorWindowsAgent",
+          "Microsoft.Azure.Security.AzureDefenderForServers"
+        ]
+      },
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "Audit",
+          "AuditIfNotExists",
+          "Disabled"
+        ],
+        "defaultValue": "Audit"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.HybridCompute/machines/extensions"
+          },
+          {
+            "not": {
+              "field": "Microsoft.HybridCompute/machines/extensions/type",
+              "in": "[parameters('approvedExtensions')]"
+            }
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "type": "Microsoft.HybridCompute/machines/extensions",
+          "existenceCondition": {
+            "field": "Microsoft.HybridCompute/machines/extensions/type",
+            "in": "[parameters('approvedExtensions')]"
+          }
+        }
+      }
+    }
+  }
+}
