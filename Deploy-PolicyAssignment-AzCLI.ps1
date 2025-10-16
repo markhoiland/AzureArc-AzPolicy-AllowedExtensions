@@ -27,6 +27,12 @@ param(
     [Parameter(Mandatory=$false)]
     [string]$PolicyName = "audit-arc-server-extensions",
 
+    [Parameter(Mandatory=$false, HelpMessage = 'If the policy definition lives in a different subscription than the assignment subscription, set this. Defaults to the assignment subscription.')]
+    [string]$DefinitionSubscriptionId = "",
+
+    [Parameter(Mandatory=$false, HelpMessage = 'If you already have the full policy definition resource id, provide it here (takes precedence over PolicyName).')]
+    [string]$PolicyDefinitionId = "",
+
     [Parameter(Mandatory=$false)]
     [string]$AssignmentName = "",
 
@@ -68,7 +74,32 @@ if ($ParamsFile) {
 & az account set --subscription $SubscriptionId | Out-Null
 
 # Build the full policy definition id (assignment accepts id or builtin alias)
-$policyId = "/subscriptions/$SubscriptionId/providers/Microsoft.Authorization/policyDefinitions/$PolicyName"
+# Determine the policy definition id. Accept a full resource id or build using the definition subscription.
+if (-not [string]::IsNullOrWhiteSpace($PolicyDefinitionId)) {
+    $policyId = $PolicyDefinitionId
+} else {
+    if ([string]::IsNullOrWhiteSpace($DefinitionSubscriptionId)) { $DefinitionSubscriptionId = $SubscriptionId }
+    $policyId = "/subscriptions/$DefinitionSubscriptionId/providers/Microsoft.Authorization/policyDefinitions/$PolicyName"
+}
+
+# Verify the policy definition exists before attempting assignment
+Write-Host "Verifying policy definition exists at: $policyId" -ForegroundColor Yellow
+try {
+    if (-not [string]::IsNullOrWhiteSpace($PolicyDefinitionId)) {
+        $check = & az policy definition show --id $PolicyDefinitionId 2>&1
+    } else {
+        $check = & az policy definition show --name $PolicyName --subscription $DefinitionSubscriptionId 2>&1
+    }
+    if ($LASTEXITCODE -ne 0 -or -not $check) {
+        Write-Error "Policy definition not found. Ensure the policy definition exists and you provided the correct subscription or full resource id."
+        Write-Host "Tried policy id: $policyId" -ForegroundColor Yellow
+        Write-Host "If the definition lives in another subscription, pass -DefinitionSubscriptionId <subId> or pass -PolicyDefinitionId with the full resource id." -ForegroundColor Yellow
+        exit 1
+    }
+} catch {
+    Write-Error "Error checking policy definition: $($_.Exception.Message)"
+    exit 1
+}
 
 # Check if assignment exists at the requested scope
 $exists = $false

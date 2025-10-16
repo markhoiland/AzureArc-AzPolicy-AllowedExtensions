@@ -18,7 +18,11 @@
         "defaultValue": [
           "Microsoft.Azure.Monitor.AzureMonitorLinuxAgent",
           "Microsoft.Azure.Monitor.AzureMonitorWindowsAgent",
-          "Microsoft.Azure.Security.AzureDefenderForServers"
+          "Microsoft.Azure.Security.AzureDefenderForServers",
+          "Microsoft.CPlat.Core.WindowsPatchExtension",
+          "Microsoft.SoftwareUpdateManagement.WindowsOsUpdateExtension",
+          "Microsoft.Azure.Monitor.AssessmentPlatform",
+          "Microsoft.Azure.Monitor.WindowsServerAssessment"
         ]
       },
       "effect": {
