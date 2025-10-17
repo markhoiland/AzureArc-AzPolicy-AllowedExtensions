@@ -2,6 +2,8 @@
 
 This folder contains a small, focused set of files to deploy a custom Azure Policy definition that audits Azure Arc-enabled server extensions which are not in an approved list, plus a helper to create a policy assignment.
 
+![Policy compliance overview](img/az-policy-compliance.png)
+
 Files
 - `arc-server-extension-policy.json` — The custom policy definition JSON. This is a full policy definition (it includes `properties.parameters` and `properties.policyRule`). Use this file with the CLI scripts below.
 - `Deploy-Policy-AzCLI.ps1` — Minimal PowerShell script that creates or updates the policy definition using `az policy definition create|update` and temporary `--rules` / `--params` files. Assumes `az login` is already done.
@@ -68,5 +70,18 @@ Troubleshooting
 - If `az policy definition create` complains about parameters or rules, ensure you're using the full policy JSON file (`arc-server-extension-policy.json`) and not only the `policyRule` object. The `Deploy-Policy-AzCLI.ps1` script extracts rules and parameters into temp files and passes them to the CLI.
 - If `az policy state` commands are not available, add/update the policy extension: `az extension add --name policy` or update your Azure CLI.
 - Permission errors: confirm you have Policy Contributor or Owner at the scope.
+
+Cleanup resources
+If you want to remove the policy assignment and definition created by these scripts, run the following commands (replace placeholders):
+
+```powershell
+# Delete assignment (scope can be subscription or resource group)
+az policy assignment delete --name <assignment-name> --scope "/subscriptions/<sub>" 
+
+# Delete definition (delete from the subscription where the definition was created)
+az policy definition delete --name <policy-name> --subscription <sub>
+```
+
+If the policy definition was created in a different subscription than the assignment, make sure to delete the definition from the correct subscription.
 
 

@@ -16,15 +16,15 @@
           "description": "List of approved extension types that are allowed on Arc-enabled servers. Example: ['Microsoft.Azure.Monitor.AzureMonitorLinuxAgent', 'Microsoft.Azure.Security.AzureDefenderForServers']"
         },
         "defaultValue": [
-          "Microsoft.Azure.Monitor.AzureMonitorLinuxAgent",
-          "Microsoft.Azure.Monitor.AzureMonitorWindowsAgent",
-          "Microsoft.Azure.Monitoring.DependencyAgent.DependencyAgentLinux",
-          "Microsoft.Azure.Monitoring.DependencyAgent.DependencyAgentWindows",
-          "Microsoft.AzureData.WindowsAgent.SqlServer",
-          "Microsoft.CPlat.Core.WindowsPatchExtension",
-          "Microsoft.SoftwareUpdateManagement.WindowsOsUpdateExtension",
-          "Microsoft.Azure.Monitor.AssessmentPlatform",
-          "Microsoft.Azure.Monitor.WindowsServerAssessment"
+          "AzureMonitorLinuxAgent",
+          "AzureMonitorWindowsAgent",
+          "DependencyAgentLinux",
+          "DependencyAgentWindows",
+          "WindowsAgent.SqlServer",
+          "WindowsPatchExtension",
+          "WindowsOsUpdateExtension",
+          "AssessmentPlatform",
+          "WindowsServerAssessment"
         ]
       },
       "effect": {

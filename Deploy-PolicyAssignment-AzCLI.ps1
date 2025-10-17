@@ -1,6 +1,6 @@
 <#
 Deploy-PolicyAssignment-AzCLI.ps1
-Minimal PowerShell helper to create or update an Azure Policy Assignment using Azure CLI (no REST).
+Minimal PowerShell helper to create or update an Azure Policy Assignment using Azure CLI.
 Assumptions: az CLI is installed and user has already run 'az login'.
 
 Usage examples:

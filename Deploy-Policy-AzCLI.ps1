@@ -1,6 +1,6 @@
 <#
 Deploy-Policy-AzCLI.ps1
-Minimal script to deploy a policy definition using Azure CLI (no REST calls).
+Minimal script to deploy a policy definition using Azure CLI.
 Assumptions: az CLI is installed and az login has already been performed.
 
 Usage:
