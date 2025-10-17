@@ -18,7 +18,9 @@
         "defaultValue": [
           "Microsoft.Azure.Monitor.AzureMonitorLinuxAgent",
           "Microsoft.Azure.Monitor.AzureMonitorWindowsAgent",
-          "Microsoft.Azure.Security.AzureDefenderForServers",
+          "Microsoft.Azure.Monitoring.DependencyAgent.DependencyAgentLinux",
+          "Microsoft.Azure.Monitoring.DependencyAgent.DependencyAgentWindows",
+          "Microsoft.AzureData.WindowsAgent.SqlServer",
           "Microsoft.CPlat.Core.WindowsPatchExtension",
           "Microsoft.SoftwareUpdateManagement.WindowsOsUpdateExtension",
           "Microsoft.Azure.Monitor.AssessmentPlatform",

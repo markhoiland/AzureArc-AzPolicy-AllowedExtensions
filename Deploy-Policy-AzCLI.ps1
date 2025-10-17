@@ -21,7 +21,7 @@ param(
     [string]$PolicyName = "audit-arc-server-extensions",
 
     [Parameter(Mandatory=$false)]
-    [string]$DisplayName = "",
+    [string]$DisplayName = "Audit Arc-enabled Server Extensions Not in Approved List",
 
     [Parameter(Mandatory=$false)]
     [ValidateSet('Indexed','All')]

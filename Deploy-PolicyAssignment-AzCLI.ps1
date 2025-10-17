@@ -34,7 +34,7 @@ param(
     [string]$PolicyDefinitionId = "",
 
     [Parameter(Mandatory=$false)]
-    [string]$AssignmentName = "",
+    [string]$AssignmentName = "Audit Arc-enabled Server Extensions Not in Approved List",
 
     [Parameter(Mandatory=$false)]
     [string]$Scope = "",
