@@ -69,9 +69,4 @@ Troubleshooting
 - If `az policy state` commands are not available, add/update the policy extension: `az extension add --name policy` or update your Azure CLI.
 - Permission errors: confirm you have Policy Contributor or Owner at the scope.
 
-Maintenance notes
-- `Deploy-Policy-AzCLI.ps1` was designed to be minimal and robust for interactive CLI usage. If you prefer automation via ARM templates or PowerShell Az cmdlets, there are alternate scripts in the repository for that workflow.
 
-If you want, I can:
-- Add a sample `assignment-params.json` file to this folder.
-- Create a small README section showing how to run these scripts in an Azure DevOps/Pipeline.

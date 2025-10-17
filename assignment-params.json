@@ -1,0 +1,11 @@
+{
+  "approvedExtensions": {
+    "value": [
+      "Microsoft.Azure.Monitor.AzureMonitorLinuxAgent",
+      "Microsoft.Azure.Monitor.AzureMonitorWindowsAgent"
+    ]
+  },
+  "effect": {
+    "value": "Audit"
+  }
+}
