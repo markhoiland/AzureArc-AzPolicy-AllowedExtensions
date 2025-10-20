@@ -25,7 +25,7 @@ param(
     [string]$SubscriptionId,
 
     [Parameter(Mandatory=$false)]
-    [string]$PolicyName = "audit-arc-server-extensions",
+    [string]$PolicyName = "audit-deny-arc-server-extensions",
 
     [Parameter(Mandatory=$false, HelpMessage = 'If the policy definition lives in a different subscription than the assignment subscription, set this. Defaults to the assignment subscription.')]
     [string]$DefinitionSubscriptionId = "",
@@ -34,13 +34,13 @@ param(
     [string]$PolicyDefinitionId = "",
 
     [Parameter(Mandatory=$false)]
-    [string]$AssignmentName = "Audit Arc-enabled Server Extensions Not in Approved List",
+    [string]$AssignmentName = "Audit or Deny Arc-enabled Server Extensions Not in Approved List",
 
     [Parameter(Mandatory=$false)]
     [string]$Scope = "",
 
     [Parameter(Mandatory=$false)]
-    [string]$ParamsFile = ""
+    [string]$ParamsFile = ".\assignment-params.json"
 )
 
 $ErrorActionPreference = 'Stop'

@@ -1,11 +1,18 @@
 {
   "approvedExtensions": {
     "value": [
-      "AzureMonitorLinuxAgent",
-      "AzureMonitorWindowsAgent"
+          "AzureMonitorLinuxAgent",
+          "AzureMonitorWindowsAgent",
+          "DependencyAgentLinux",
+          "DependencyAgentWindows",
+          "WindowsAgent.SqlServer",
+          "WindowsPatchExtension",
+          "WindowsOsUpdateExtension",
+          "AssessmentPlatform",
+          "WindowsServerAssessment"
     ]
   },
   "effect": {
-    "value": "Audit"
+    "value": "Deny"
   }
 }

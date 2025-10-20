@@ -18,10 +18,10 @@ param(
     [string]$PolicyFile = ".\arc-server-extension-policy.json",
 
     [Parameter(Mandatory=$false)]
-    [string]$PolicyName = "audit-arc-server-extensions",
+    [string]$PolicyName = "audit-deny-arc-server-extensions",
 
     [Parameter(Mandatory=$false)]
-    [string]$DisplayName = "Audit Arc-enabled Server Extensions Not in Approved List",
+    [string]$DisplayName = "Audit or Deny Arc-enabled Server Extensions Not in Approved List",
 
     [Parameter(Mandatory=$false)]
     [ValidateSet('Indexed','All')]
