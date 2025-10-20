@@ -1,9 +1,9 @@
 {
   "properties": {
-    "displayName": "Audit Arc-enabled Server Extensions Not in Approved List",
+    "displayName": "Audit or Deny Arc-enabled Server Extensions Not in Approved List",
     "policyType": "Custom",
     "mode": "Indexed",
-    "description": "This policy audits Azure Arc-enabled servers that have extensions installed which are not in the approved parameter list. Use this policy to ensure only approved extensions are deployed to your Arc-enabled servers.",
+    "description": "This policy audits Azure Arc-enabled servers that have extensions installed which are not in the approved parameter list (or denies new extensions not on the allow list)). Use this policy to ensure only approved extensions are deployed to your Arc-enabled servers.",
     "metadata": {
       "version": "1.0.0",
       "category": "Azure Arc"
@@ -36,6 +36,7 @@
         "allowedValues": [
           "Audit",
           "AuditIfNotExists",
+          "Deny",
           "Disabled"
         ],
         "defaultValue": "Audit"
